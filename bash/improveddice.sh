@@ -25,9 +25,11 @@ die2=$(( RANDOM % SIDES + BIAS ))
 
 # sum up the rolls
 sum=$(( die1 + die2 ))
+avg=$(( sum / 2 ))
 
 #display the sum of the dice
 echo "The sum of the dice rolled came to: $sum
+The average is: $avg
 "
 # display the summary
 echo "Summary of roll:
