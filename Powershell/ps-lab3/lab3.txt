@@ -1,0 +1,8 @@
+﻿get-wmiobject -class win32_logicaldisk | ? Size -GT "0" | format-table -AutoSize DeviceID, @{n="Size     ";
+        e={[math]::Round($_.Size/1GB,2).ToString()+"GB"}}, 
+        @{n="Free Space";e={[math]::Round($_.FreeSpace/1GB,2).ToString()+"GB"}}, ProviderName
+
+get-wmiobject -class win32_product | ? Vendor -NotMatch "Microsoft Corporation" | sort InstallDate | format-table -autosize @{n="Installed On";
+    e={([datetime]($_.installdate.substring(0,4) + " " + 
+    $_.installdate.substring(4,2) + " " + 
+    $_.installdate.substring(6,2))).ToString("ddd MMM,dd,yyyy")}}, Vendor, Name, Version
